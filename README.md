@@ -16,7 +16,7 @@ This ensures that the model gives the user a personalised experience on two para
 ![image](https://github.com/Medici357/Grassh_shit/assets/127466814/c96f0269-9db2-4567-8604-b2d55fc55736)
 
 # Usage
-Download the bin file from https://drive.google.com/file/d/1q94PkFwAPM0_IWhn_D3I-sa4QaH3bVwN/view?usp=drive_link and paste it in the "gpt2_empathy_model" for the code to run.
+Download the bin file from https://drive.google.com/file/d/1q94PkFwAPM0_IWhn_D3I-sa4QaH3bVwN/view?usp=drive_link and paste it in the "gpt2_empathy_model" in the "server" for the code to run.
 
 # Future Implementations
 
