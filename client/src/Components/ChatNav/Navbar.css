@@ -1,0 +1,7 @@
+#chat-nav-bar, #chat-nav-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
