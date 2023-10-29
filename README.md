@@ -21,4 +21,5 @@ Download the bin file from https://drive.google.com/file/d/1q94PkFwAPM0_IWhn_D3I
 # Future Implementations
 
 <img width="934" alt="image-20221016141015236" src="https://github.com/ragavpn/GRASSH_ML/assets/118587215/54f1bbf1-0e2d-4097-85de-71bba855531b">
+
 With the current hardware possessed by us, we are not able to train the ML Model that we intend to implemment. However, we will implement this soon getting the said required hardware.
