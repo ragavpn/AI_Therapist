@@ -12,15 +12,10 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 text_path = 'text.txt'
 
 if os.path.exists(text_path):
-    with open(text_path, 'r+') as file:
+    with open(text_path, 'r') as file:
         text = file.read()
 
-feedbackfile = 'feedback.txt'
-
-if os.path.exists(text_path):
-    with open(feedbackfile, 'r+') as file:
-        feedback = file.read()
-
+print("Read text: ", text)
 
 # Check if a CUDA-compatible GPU is available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -63,3 +58,11 @@ needed_text = generated_text.split("The response to the above statement can be")
 flag = needed_text.find("\"")
 needed_text = needed_text[:flag]
 print("Generated Text: ", needed_text)
+
+# needed_text=  "hello"
+
+text_path = 'text.txt'
+
+if os.path.exists(text_path):
+    with open(text_path, 'w') as file:
+        file.write(needed_text)

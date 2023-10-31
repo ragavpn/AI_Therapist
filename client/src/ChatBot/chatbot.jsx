@@ -236,23 +236,48 @@ function ChatBot() {
 
     function send1() {
         // setFeed(1);
-        socket.emit('feedback', 1)
+        // socket.emit('feedback', 1)
+        axios.post("http://localhost:5000/feedback", {
+            params: {
+                value: 1
+            }
+        })
     }
     function send2() {
         // setFeed(2);
-        socket.emit('feedback', 2)
+        // socket.emit('feedback', 2)
+        axios.post("http://localhost:5000/feedback", {
+            params: {
+                value: 2
+            }
+        })
     }
     function send3() {
         // setFeed(3);
-        socket.emit('feedback', 3)
+        // socket.emit('feedback', 3)
+        axios.post("http://localhost:5000/feedback", {
+            params: {
+                value: 3
+            }
+        })
     }
     function send4() {
         // setFeed(4);
-        socket.emit('feedback', 4)
+        // socket.emit('feedback', 4)
+        axios.post("http://localhost:5000/feedback", {
+            params: {
+                value: 4
+            }
+        })
     }
     function send5() {
         // setFeed(5);
-        socket.emit('feedback', 5)
+        // socket.emit('feedback', 5)
+        axios.post("http://localhost:5000/feedback", {
+            params: {
+                value: 5
+            }
+        })
     }
 
 

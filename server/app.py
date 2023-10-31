@@ -5,6 +5,7 @@ import subprocess
 # from pydub import AudioSegment
 from decouple import config
 import speech_recognition as sr
+import time
 # import base64
 
 from flask_socketio import SocketIO, emit
@@ -15,26 +16,26 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 recognizer = sr.Recognizer()
 CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "http://localhost:5000"]}})
 
-db_data = {
-    'host': config('DB_HOST'),
-    'user': config('DB_USER'),
-    'password': config('DB_PASSWORD'),
-    'database': config('DB_NAME')
-}
+# db_data = {
+#     'host': config('DB_HOST'),
+#     'user': config('DB_USER'),
+#     'password': config('DB_PASSWORD'),
+#     'database': config('DB_NAME')
+# }
 
 # con = mysql.connector.connect(host='localhost', user='root', password='!Ndr0med1')
-con = mysql.connector.connect(**db_data)
-print(con)
-cursor = con.cursor()
-create_statement = """CREATE TABLE IF NOT EXISTS users (
-        user_id INT AUTO_INCREMENT PRIMARY KEY,
-        fullName VARCHAR(50) NOT NULL,
-        email VARCHAR(50) NOT NULL UNIQUE,
-        password VARCHAR(30) NOT NULL
-    )"""
-cursor.execute(create_statement)
-con.commit()
-print("Created...")
+# con = mysql.connector.connect(**db_data)
+# print(con)
+# cursor = con.cursor()
+# create_statement = """CREATE TABLE IF NOT EXISTS users (
+#         user_id INT AUTO_INCREMENT PRIMARY KEY,
+#         fullName VARCHAR(50) NOT NULL,
+#         email VARCHAR(50) NOT NULL UNIQUE,
+#         password VARCHAR(30) NOT NULL
+#     )"""
+# cursor.execute(create_statement)
+# con.commit()
+# print("Created...")
 
 user_replies = []
 bot_replies = []
@@ -81,23 +82,25 @@ def handle_message():
     user_replies.append(userQuery)
 
     file_path = "text.txt"
-    placeholder_output = "I understand that feeling."
+    # placeholder_output = "I understand that feeling."
 
     with open(file_path, "w") as file:
         file.writelines([userQuery])
 
-    with open(file_path, "w") as file:
-        file.writelines([placeholder_output])
+    # with open(file_path, "w") as file:
+    #     file.writelines([placeholder_output])
         
 
-    # ml_file = "runner.py"    #correct it later
-    # subprocess.run(['python', ml_file])
+    ml_file = "runner.py"    #correct it later
+    subprocess.run(['python3', ml_file])
+
+    # time.sleep(5)
 
     row=""
     with open(file_path, "r") as file:
         row = file.read()
     bot_replies.append(row)
-    print(row)
+    print("Reply:",row)
     # socketio.emit('message', row)
     return row
 
