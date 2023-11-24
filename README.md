@@ -15,12 +15,14 @@ This ensures that the model gives the user a personalised experience on two para
 
 ![image](https://github.com/Medici357/Grassh_shit/assets/127466814/c96f0269-9db2-4567-8604-b2d55fc55736)
 
-# Usage
-Download the bin file from https://drive.google.com/file/d/1q94PkFwAPM0_IWhn_D3I-sa4QaH3bVwN/view?usp=drive_link and paste it in the "gpt2_empathy_model" in the "server" for the code to run.
+# Initialization
+Download the rep and run "pip install requirements.txt". The run "git lfs install" followed by "git lfs pull". Then go to the cleint folder and run "npm install react-scripts".
+
+# Running
+Open two terminals. Go to the client folder in the first terminal and run "npm run start". Go to the server folder in the second terminal and run "python -m flask run". 
 
 # Future Implementations
 
 <img width="934" alt="image-20221016141015236" src="https://github.com/ragavpn/GRASSH_ML/assets/118587215/54f1bbf1-0e2d-4097-85de-71bba855531b">
-
 
 With the current hardware possessed by us, we are not able to train the ML Model that we intend to implemment. However, we will implement this soon getting the said required hardware.
