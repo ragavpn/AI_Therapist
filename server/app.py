@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
 import subprocess
-# from pydub import AudioSegment
+from pydub import AudioSegment
 from decouple import config
 import speech_recognition as sr
 import time
