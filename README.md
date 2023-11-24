@@ -16,7 +16,7 @@ This ensures that the model gives the user a personalised experience on two para
 ![image](https://github.com/Medici357/Grassh_shit/assets/127466814/c96f0269-9db2-4567-8604-b2d55fc55736)
 
 # Initialization
-Download the rep and run "pip install requirements.txt". The run "git lfs install" followed by "git lfs pull". Then go to the cleint folder and run "npm install react-scripts".
+Download the rep and run "pip install -r requirements.txt". The run "git lfs install" followed by "git lfs pull". Then go to the cleint folder and run "npm install react-scripts".
 
 # Running
 Open two terminals. Go to the client folder in the first terminal and run "npm run start". Go to the server folder in the second terminal and run "python -m flask run". 
