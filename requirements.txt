@@ -2,7 +2,6 @@ python-decouple
 flask
 flask_cors
 SpeechRecognition
-subprocess
 pydub
 flask_socketio
 transformers
