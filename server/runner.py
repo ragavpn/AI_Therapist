@@ -1,13 +1,37 @@
-from transformers import pipeline
+from transformers import pipeline, GPT2LMHeadModel, GPT2Tokenizer
 import torch
-from transformers import RobertaForCausalLM, RobertaTokenizer, AdamW, get_linear_schedule_with_warmup, GPT2LMHeadModel, GPT2Tokenizer
-import pandas as pd
-import random
-import os, warnings
-CUDA_LAUNCH_BLOCKING=1
+import os
+import warnings
+
+CUDA_LAUNCH_BLOCKING = 1
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
+
+device = torch.device("cpu")
+
+# Classifier pipeline for text classification (DistilBERT)
+classifier = pipeline("text-classification", model="bdotloh/distilbert-base-uncased-empathetic-dialogues-context", return_all_scores=True)
+
+# Load the pre-trained RoBERTa model and tokenizer
+model_name = "gpt2"
+# saved_model_dir = "gpt2_empathy_model"
+checkpoint_path = "gpt2_empathy_checkpoint.pt"
+
+if os.path.exists(checkpoint_path):
+    checkpoint = torch.load(checkpoint_path)
+    model = GPT2LMHeadModel.from_pretrained(model_name).to(device)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    print("Loaded checkpoint")
+else:
+    print("Loading model...")
+    model = GPT2LMHeadModel.from_pretrained(model_name).to(device)
+
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+# Set the pad_token_id to indicate the end of generated text
+model.config.pad_token_id = model.config.eos_token_id
+
 
 text_path = 'text.txt'
 
@@ -15,25 +39,6 @@ if os.path.exists(text_path):
     with open(text_path, 'r') as file:
         text = file.read()
 
-print("Read text: ", text)
-
-# Check if a CUDA-compatible GPU is available
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# Load the pre-trained model and tokenizer
-classifier = pipeline("text-classification",model='bhadresh-savani/bert-base-uncased-emotion', return_all_scores=True)
-    
-# Load the pre-trained gpt2 model and tokenizer
-model_name = "gpt2"  
-tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-
-# Check if a saved model exists
-saved_model_dir = "gpt2_empathy_model"
-model = GPT2LMHeadModel.from_pretrained(saved_model_dir).to(device)
-
-
-# Set the pad_token_id to indicate the end of generated text
-model.config.pad_token_id = model.config.eos_token_id
 
 prediction = classifier(text)
 prediction = prediction[0]
@@ -44,25 +49,18 @@ sorted_predictions = sorted(prediction, key=lambda x: x['score'], reverse=True)
 # Find the label with the second-highest score
 dialogue_emotion = sorted_predictions[1]['label']
 emotion = sorted_predictions[0]['label']
+prompt = f"User Input: {text}\nThis shows the emotion {emotion} and from past conversation, it also shows the emotion {dialogue_emotion} currently."
 
-# Input prompt
-prompt = "{} - this shows {} and from past conversation, it also shows {}.".format(text, emotion, dialogue_emotion)
-
-# Generate text based on the prompt
+# Generate text based on the prompt using RoBERTa
 input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
-output = model.generate(input_ids, max_length=200, num_return_sequences=1, no_repeat_ngram_size=2)
+output = model.generate(input_ids, max_length=150, num_return_sequences=1, no_repeat_ngram_size=2)
 
 # Decode and print the generated text
 generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
-needed_text = generated_text.split("The response to the above statement can be")[-1].strip()[1:]
-flag = needed_text.find("\"")
-needed_text = needed_text[:flag]
-print("Generated Text: ", needed_text)
-
-# needed_text=  "hello"
-
-text_path = 'text.txt'
+generated_text = generated_text.find("The response to the above statement can be - ")
+generated_text = generated_text[generated_text + len("The response to the above statement can be - ")+1:]
+generated_text = generated_text[:generated_text.find("!!")-2]
 
 if os.path.exists(text_path):
     with open(text_path, 'w') as file:
-        file.write(needed_text)
+        file.write(generated_text)
