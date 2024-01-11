@@ -1,6 +1,3 @@
-# GRASSH_ML
-
-# Netcom Problem Statement:
 # Emotion-Detecting Therapeutic Chat-bot
 
 We are using emotion detection in chat to create a more robust and interactive chat experience for the user, with the underlying goal of acting essentially as an AI therapist. 
