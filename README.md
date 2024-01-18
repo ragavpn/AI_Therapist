@@ -1,6 +1,3 @@
-# GRASSH_ML
-
-# Netcom Problem Statement:
 # Emotion-Detecting Therapeutic Chat-bot
 
 We are using emotion detection in chat to create a more robust and interactive chat experience for the user, with the underlying goal of acting essentially as an AI therapist. 
@@ -18,11 +15,6 @@ This ensures that the model gives the user a personalised experience on two para
 # Initialization
 Download the rep and run "pip install -r requirements.txt". Then go to the client folder and run "npm install" (if there is an error saying react-scripts not found when running the client run "npm install react-scripts"). Download the model from the link "" and paste it in the server folder.
 
+
 # Running
 Open two terminals. Go to the client folder in the first terminal and run "npm run start". Go to the server folder in the second terminal and run "python -m flask run". 
-
-# Future Implementations
-
-<img width="934" alt="image-20221016141015236" src="https://github.com/ragavpn/GRASSH_ML/assets/118587215/54f1bbf1-0e2d-4097-85de-71bba855531b">
-
-With the current hardware possessed by us, we are not able to train the ML Model that we intend to implemment. However, we will implement this soon getting the said required hardware.
