@@ -12,6 +12,12 @@ This ensures that the model gives the user a personalised experience on two para
 
 ![image](https://github.com/Medici357/Grassh_shit/assets/127466814/c96f0269-9db2-4567-8604-b2d55fc55736)
 
+# The Website Preview
+![Landing Page](https://github.com/ragavpn/AI_Therapist/assets/118587215/c7fd8bc5-d0cf-4b0f-9f81-42957cf318a8)
+
+![Chatbot](https://github.com/ragavpn/AI_Therapist/assets/118587215/941ffd32-7195-41a8-a241-b35fd2db990f)
+
+
 # Initialization
 Download the rep and run "pip install -r requirements.txt". Then go to the client folder and run "npm install" (if there is an error saying react-scripts not found when running the client run "npm install react-scripts"). Download the model from the link "https://drive.google.com/file/d/1WaYHq86ScCoHfDSDuDQ99lTDtXMIJk2d/view?usp=sharing" and paste it in the server folder.
 
